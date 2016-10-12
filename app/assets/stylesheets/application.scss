@@ -1,0 +1,9 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "chatrooms";
+@import "users";
+
+
+.github-fork-ribbon.right-bottom:before {
+    background-color: black;
+}
