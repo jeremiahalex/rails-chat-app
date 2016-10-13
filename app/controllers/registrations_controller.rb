@@ -5,10 +5,10 @@ class RegistrationsController < ApplicationController
     @user = User.new
   end
 
-  def create 
+  def create
     user = User.new(user_params)
     if user.save
-      session[:user_id] = user.id
+      cookies.signed[:username] = user.username
       redirect_to chatrooms_path
     else
       redirect_to signup_path, flash[:notice] =  user.errors.messages

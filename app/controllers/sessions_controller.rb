@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, only: [:destroy]
-  
+
   def new
     @user = User.new
   end
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(user_params)
     if user
-      session[:user_id] = user.id
+      cookies.signed[:username] = user.username
       redirect_to chatrooms_path
     else
       redirect_to login_path, flash[:notice] =  {username: ["doesn't exist"]}
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    cookies.signed[:username] = nil
     redirect_to root_path
   end
 
