@@ -4,8 +4,7 @@ $(document).on('turbolinks:load', function () {
 })
 
 function connectToChat () {
-  //   // create a subscrition to the messages channel, we should then get a stream of messages
-  //   // App.messages = App.cable.subscriptions.create('MessagesChannel', {
+  // create a subscrition to the messages channel, we should then get a stream of messages
   if (typeof current_room_id !== 'undefined') {
     App.messages = App.cable.subscriptions.create({ channel: 'MessagesChannel', room: current_room_id }, {
       received: function (data) {

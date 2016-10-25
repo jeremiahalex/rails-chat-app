@@ -6,9 +6,8 @@ $(document).on('turbolinks:load', function () {
 function submitNewMessage () {
   $('textarea#message_content').keydown(function (event) {
     if (event.keyCode == 13) {
-      // use to send direct through action cable rather than ajax
-      App.messages.send({ user: '[from cable] ' + current_username, message: $('[data-textarea="message"]').val() })
-      // or through Ajax
+      // can send message to actioncable, as well as triggering from the model creation
+      App.messages.send({ user: current_username, message: $('[data-textarea="message"]').val() })
       $('[data-send="message"]').click()
       $('[data-textarea="message"]').val(' ')
 
